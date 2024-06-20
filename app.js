@@ -1,25 +1,42 @@
-// Тоглогчийн ээлжийг хадгалах хувьсагч
+//тоглоомийн бүх газар ашиглагдах global хувьсагчид
 var activePlayer = 0;
-
-// Тоглогчдийн цуглуулсан оноог хадгалах хувьсагч
 var scores = [0, 0];
-
-//тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
 var roundScore = 0;
-
-//Шооны аль талаараа буусныг хадгалах хувьсагч
-var diceNumber = Math.random();
-
-// Програм эхлэхэд бэтлгэе
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-
 var diceDom = document.querySelector(".dice");
 
-diceDom.style.display = "none";
+//Тоглоомыг эхлүүлнэ
+initGame();
 
+//Тоглоомыг шинээр эхлэхэд бэлдэнэ.
+function initGame() {
+    // Тоглогчийн ээлжийг хадгалах хувьсагч
+    activePlayer = 0;
+
+    // Тоглогчдийн цуглуулсан оноог хадгалах хувьсагч
+    scores = [0, 0];
+
+    //тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
+    roundScore = 0;
+
+    document.getElementById("score-0").textContent = "0";
+    document.getElementById("score-1").textContent = "0";
+    document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+
+    document.getElementById("name-0").textContent = "Player1";
+    document.getElementById("name-1").textContent = "Player2";
+
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+
+
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+
+    document.querySelector(".player-0-panel").classList.add("active");
+
+    diceDom.style.display = "none";
+}
 
 // Шоог шидэх эвент листенер
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -40,7 +57,6 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
         //1 буусан тул тоглогчийн ээлжийг солино.
         switchToNextPlayer();
     }
-
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function () {
@@ -58,10 +74,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     }
 })
 
-
-document.querySelector(".btn-new").addEventListener("click", function () {
-    alert("good");
-})
+document.querySelector(".btn-new").addEventListener("click", initGame);
 
 function switchToNextPlayer() {
     roundScore = 0;
@@ -75,6 +88,7 @@ function switchToNextPlayer() {
 
     diceDom.style.display = "none";
 }
+
 
 
 
